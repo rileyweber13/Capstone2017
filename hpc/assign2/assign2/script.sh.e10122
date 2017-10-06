@@ -1,0 +1,84 @@
+*** Error in `./a.out': double free or corruption (!prev): 0x00000000012cc480 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x7cfe1)[0x2b1fd94dafe1]
+./a.out[0x400b80]
+./a.out[0x401464]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x2b1fd947fb15]
+./a.out[0x400a39]
+======= Memory map: ========
+00400000-00402000 r-xp 00000000 00:2c 43635877403                        /users/achand12/hpc/assign2/a.out
+00601000-00602000 r--p 00001000 00:2c 43635877403                        /users/achand12/hpc/assign2/a.out
+00602000-00603000 rw-p 00002000 00:2c 43635877403                        /users/achand12/hpc/assign2/a.out
+012cc000-012ed000 rw-p 00000000 00:00 0                                  [heap]
+2b1fd8a19000-2b1fd8a3a000 r-xp 00000000 08:05 921217                     /usr/lib64/ld-2.17.so
+2b1fd8a3a000-2b1fd8a3c000 rw-p 00000000 00:00 0 
+2b1fd8a62000-2b1fd8b67000 rw-p 00000000 00:00 0 
+2b1fd8c3a000-2b1fd8c3b000 r--p 00021000 08:05 921217                     /usr/lib64/ld-2.17.so
+2b1fd8c3b000-2b1fd8c3c000 rw-p 00022000 08:05 921217                     /usr/lib64/ld-2.17.so
+2b1fd8c3c000-2b1fd8c3d000 rw-p 00000000 00:00 0 
+2b1fd8c3d000-2b1fd8d26000 r-xp 00000000 08:05 921528                     /usr/lib64/libstdc++.so.6.0.19
+2b1fd8d26000-2b1fd8f26000 ---p 000e9000 08:05 921528                     /usr/lib64/libstdc++.so.6.0.19
+2b1fd8f26000-2b1fd8f2f000 r--p 000e9000 08:05 921528                     /usr/lib64/libstdc++.so.6.0.19
+2b1fd8f2f000-2b1fd8f31000 rw-p 000f2000 08:05 921528                     /usr/lib64/libstdc++.so.6.0.19
+2b1fd8f31000-2b1fd8f46000 rw-p 00000000 00:00 0 
+2b1fd8f46000-2b1fd9047000 r-xp 00000000 08:05 921232                     /usr/lib64/libm-2.17.so
+2b1fd9047000-2b1fd9246000 ---p 00101000 08:05 921232                     /usr/lib64/libm-2.17.so
+2b1fd9246000-2b1fd9247000 r--p 00100000 08:05 921232                     /usr/lib64/libm-2.17.so
+2b1fd9247000-2b1fd9248000 rw-p 00101000 08:05 921232                     /usr/lib64/libm-2.17.so
+2b1fd9248000-2b1fd925d000 r-xp 00000000 08:05 917524                     /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2b1fd925d000-2b1fd945c000 ---p 00015000 08:05 917524                     /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2b1fd945c000-2b1fd945d000 r--p 00014000 08:05 917524                     /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2b1fd945d000-2b1fd945e000 rw-p 00015000 08:05 917524                     /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2b1fd945e000-2b1fd9614000 r-xp 00000000 08:05 921224                     /usr/lib64/libc-2.17.so
+2b1fd9614000-2b1fd9814000 ---p 001b6000 08:05 921224                     /usr/lib64/libc-2.17.so
+2b1fd9814000-2b1fd9818000 r--p 001b6000 08:05 921224                     /usr/lib64/libc-2.17.so
+2b1fd9818000-2b1fd981a000 rw-p 001ba000 08:05 921224                     /usr/lib64/libc-2.17.so
+2b1fd981a000-2b1fd981f000 rw-p 00000000 00:00 0 
+2b1fdc000000-2b1fdc021000 rw-p 00000000 00:00 0 
+2b1fdc021000-2b1fe0000000 ---p 00000000 00:00 0 
+7ffe96d03000-7ffe96d24000 rw-p 00000000 00:00 0                          [stack]
+7ffe96dee000-7ffe96df0000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+/var/spool/torque/mom_priv/jobs/10122.mba-m1.uncc.edu.SC: line 10: 108428 Aborted                 (core dumped) ./a.out $ele $operations >> output.txt
+*** Error in `./a.out': double free or corruption (!prev): 0x000000000089ac80 ***
+======= Backtrace: =========
+/lib64/libc.so.6(+0x7cfe1)[0x2ad384698fe1]
+./a.out[0x400b80]
+./a.out[0x401464]
+/lib64/libc.so.6(__libc_start_main+0xf5)[0x2ad38463db15]
+./a.out[0x400a39]
+======= Memory map: ========
+00400000-00402000 r-xp 00000000 00:2c 43635877403                        /users/achand12/hpc/assign2/a.out
+00601000-00602000 r--p 00001000 00:2c 43635877403                        /users/achand12/hpc/assign2/a.out
+00602000-00603000 rw-p 00002000 00:2c 43635877403                        /users/achand12/hpc/assign2/a.out
+0089a000-008bb000 rw-p 00000000 00:00 0                                  [heap]
+2ad383bd7000-2ad383bf8000 r-xp 00000000 08:05 921217                     /usr/lib64/ld-2.17.so
+2ad383bf8000-2ad383bfa000 rw-p 00000000 00:00 0 
+2ad383c20000-2ad383d25000 rw-p 00000000 00:00 0 
+2ad383df8000-2ad383df9000 r--p 00021000 08:05 921217                     /usr/lib64/ld-2.17.so
+2ad383df9000-2ad383dfa000 rw-p 00022000 08:05 921217                     /usr/lib64/ld-2.17.so
+2ad383dfa000-2ad383dfb000 rw-p 00000000 00:00 0 
+2ad383dfb000-2ad383ee4000 r-xp 00000000 08:05 921528                     /usr/lib64/libstdc++.so.6.0.19
+2ad383ee4000-2ad3840e4000 ---p 000e9000 08:05 921528                     /usr/lib64/libstdc++.so.6.0.19
+2ad3840e4000-2ad3840ed000 r--p 000e9000 08:05 921528                     /usr/lib64/libstdc++.so.6.0.19
+2ad3840ed000-2ad3840ef000 rw-p 000f2000 08:05 921528                     /usr/lib64/libstdc++.so.6.0.19
+2ad3840ef000-2ad384104000 rw-p 00000000 00:00 0 
+2ad384104000-2ad384205000 r-xp 00000000 08:05 921232                     /usr/lib64/libm-2.17.so
+2ad384205000-2ad384404000 ---p 00101000 08:05 921232                     /usr/lib64/libm-2.17.so
+2ad384404000-2ad384405000 r--p 00100000 08:05 921232                     /usr/lib64/libm-2.17.so
+2ad384405000-2ad384406000 rw-p 00101000 08:05 921232                     /usr/lib64/libm-2.17.so
+2ad384406000-2ad38441b000 r-xp 00000000 08:05 917524                     /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2ad38441b000-2ad38461a000 ---p 00015000 08:05 917524                     /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2ad38461a000-2ad38461b000 r--p 00014000 08:05 917524                     /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2ad38461b000-2ad38461c000 rw-p 00015000 08:05 917524                     /usr/lib64/libgcc_s-4.8.5-20150702.so.1
+2ad38461c000-2ad3847d2000 r-xp 00000000 08:05 921224                     /usr/lib64/libc-2.17.so
+2ad3847d2000-2ad3849d2000 ---p 001b6000 08:05 921224                     /usr/lib64/libc-2.17.so
+2ad3849d2000-2ad3849d6000 r--p 001b6000 08:05 921224                     /usr/lib64/libc-2.17.so
+2ad3849d6000-2ad3849d8000 rw-p 001ba000 08:05 921224                     /usr/lib64/libc-2.17.so
+2ad3849d8000-2ad3849dd000 rw-p 00000000 00:00 0 
+2ad388000000-2ad388021000 rw-p 00000000 00:00 0 
+2ad388021000-2ad38c000000 ---p 00000000 00:00 0 
+7fff0a754000-7fff0a775000 rw-p 00000000 00:00 0                          [stack]
+7fff0a7a7000-7fff0a7a9000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+/var/spool/torque/mom_priv/jobs/10122.mba-m1.uncc.edu.SC: line 10: 108430 Aborted                 (core dumped) ./a.out $ele $operations >> output.txt

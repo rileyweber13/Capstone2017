@@ -1,0 +1,19 @@
+
+Performing 1000000000 Loops
+0 0
+1 0
+2 0
+3 0
+4 0
+5 0
+6 0
+Threads[16] Elapsed time 0.301485 Mega Flops 1698259
+Performing 1000000000 Loops
+0 0
+1 0
+2 0
+3 0
+4 0
+5 0
+6 0
+Threads[16] Elapsed time 0.297519 Mega iops 968004

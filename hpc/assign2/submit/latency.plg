@@ -1,0 +1,7 @@
+set terminal png
+set output "output.png"
+set xlabel "Size of array in KB"
+set ylabel "Time required per node in Nano seconds"
+set title "Latency"
+set logscale x
+plot "latency.txt" using 1:2 title "Read" with linespoints, "latency.txt" using 1:3 title "Write" with linespoints

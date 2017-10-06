@@ -1,0 +1,7 @@
+set terminal png
+set output "output.png"
+set xlabel "Data in KB"
+set ylabel "Bandwidth in GB/s"
+set title "Bandwidth"
+set logscale x
+plot "bandwidth.txt" using 1:2 title "Read" with linespoints, "bandwidth.txt" using 1:3 title "Write" with linespoints, "bandwidth.txt" using 1:4 title "Read Write" with linespoints

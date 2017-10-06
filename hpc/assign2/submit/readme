@@ -1,0 +1,4 @@
+*.cpp = files which contains the main code
+*.sh = script files for running binary on mamba
+*.plg = script files for gnuplot
+*.txt = contains the result generated from the binaries
