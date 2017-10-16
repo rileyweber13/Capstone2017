@@ -64,7 +64,7 @@ int main (int argc, char* argv[]) {
     printf("%d\n", gid);
     if (gid < 0)
     {
-        printf("Failed to add event string %s to LIKWID's performance monitoring module\n", estr);
+	printf("Failed to add event string %s to LIKWID's performance monitoring module\n", estr);
         perfmon_finalize();
         topology_finalize();
         return 1;
@@ -90,11 +90,6 @@ int main (int argc, char* argv[]) {
         return 1;
     }
     
-    printf("Performing merge sort with counters started\n");
-    //Call numerical integration function
-    // Perform something
-    //Currently commented out because cant get past the add eventset call
-    testMergeSort();
     sleep(10);
     // Stop all counters in the previously started event set.
     err = perfmon_stopCounters();

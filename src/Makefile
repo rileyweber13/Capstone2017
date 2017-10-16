@@ -1,5 +1,6 @@
 PREFIX = ~/Deveopment/likwid_local
 CC = gcc
+CXXFLAGS=-march=native -mtune=native -g -fopenmp -std=c++11 -O2# -S -fverbose-asm
 CFLAGS=
 HEADERS = $(PREFIX)/include
 LIBS = $(PREFIX)/lib
@@ -13,10 +14,8 @@ test: $(OBJS)
 	$(CC) -c $(CFLAGS) -I$(LOCALHEADS) -L$(LOCALLIBS) *.cpp
 
 
-help: 
-	@echo "Local Headers: $(LOCALHEADS)"
-	@echo "Local Libs: $(LOCALLIBS)"
-	@echo "Project Directory: $(CURRENT)"
+help:
+	@echo "Build Performance monitoring in main.cpp"
 
 clean: 
-	rm test main.o merge.o
+	rm test *.o
