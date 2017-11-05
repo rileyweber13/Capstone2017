@@ -4,9 +4,6 @@
 
 #include <likwid.h>
 
-void integrate(char * argv[]);
-//const char * printTest(const char testString[]);
-void testMergeSort();
 
 int main (int argc, char* argv[]) {
     printf("Inside Main!\n");
@@ -15,10 +12,8 @@ int main (int argc, char* argv[]) {
     int* cpus;
     int gid;
     double result = 0.0;
-//    char estr[] = "UMASK_CACHE_LOOKUP_READ_M:CBOX,UMASK_CACEH_LOOKUP_WRITE_M:CBOX, \
-                    UMASK_L2_LINES_IN_I:PMC,UMASK_L2_LINES_OUT_DEMAND_CLEAN:PMC \
-                    UMASK_PWR_PKG_ENERGY:PWR0";
-    char estr[] = "L2_LINES_IN_ALL:PMC0,L2_LINES_OUT_ALL:PMC0,BR_INST_EXEC_COND_TAKEN:PMC1";
+    char estr[] = ""; // Some string to represent events to pass to likwid
+
     // Load topology module
     printf("Topology Init\n");
     err = topology_init();
@@ -32,15 +27,12 @@ int main (int argc, char* argv[]) {
     CpuTopology_t topo = get_cpuTopology();
     // Create affinity domains. Commonly only needed when reading Uncore counters
     affinity_init();
-
     printf("Likwid example on a %s with %d CPUs\n", info->name, topo->numHWThreads);
-
     cpus = (int*)malloc(topo->numHWThreads * sizeof(int));
     if (!cpus)
         return 1;
 
-    for (i=0;i<topo->numHWThreads;i++)
-    {
+    for (i=0;i<topo->numHWThreads;i++) {
         cpus[i] = topo->threadPool[i].apicId;
     }
 
@@ -51,19 +43,17 @@ int main (int argc, char* argv[]) {
 
     // Initialize the perfmon module.
     err = perfmon_init(topo->numHWThreads, cpus);
-    if (err < 0)
-    {
+    if (err < 0) {
         printf("Failed to initialize LIKWID's performance monitoring module\n");
         topology_finalize();
         return 1;
     }
 
     // Add eventset string to the perfmon module.
-    printf("Adding eventSet %s\n", estr);
+    printf("Adding EventSet(s) %s\n", estr);
     gid = perfmon_addEventSet(estr);
     printf("%d\n", gid);
-    if (gid < 0)
-    {
+    if (gid < 0) {
 	printf("Failed to add event string %s to LIKWID's performance monitoring module\n", estr);
         perfmon_finalize();
         topology_finalize();
@@ -89,9 +79,12 @@ int main (int argc, char* argv[]) {
         topology_finalize();
         return 1;
     }
+
+    // Insert code you want to monitor here
     
     sleep(10);
     // Stop all counters in the previously started event set.
+    printf("Stop Counters\n");
     err = perfmon_stopCounters();
     if (err < 0)
     {
