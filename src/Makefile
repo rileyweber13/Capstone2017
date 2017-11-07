@@ -9,8 +9,8 @@ OBJS=
 test:
 	$(CC) -DLIKWID_PERFMON $(CXXFLAGS) -I$(HEADERS) -L$(LIBS) likwid_marker_t.c -llikwid -o ./bin/marker_test
 
-flops:
-	$(CC) $(CFLAGS) -I$(HEADERS) -L$(LIBS) -llikwid ./flops/*.c ./main.c -o ./bin/flops
+flops_t:
+	$(CC) -DLIKWID_PERFMON $(CXXFLAGS) -I$(HEADERS) -L$(LIBS) ./flops/marker_flops.c ./likwid_marker_t.c -llikwid -o ./bin/flops
 
 
 help:
