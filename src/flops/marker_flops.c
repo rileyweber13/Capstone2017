@@ -50,7 +50,7 @@ void perform_flops(struct flops* fp) {
     printf("perform_flops called.\n");
 
     float res[8];
-    printf("performing flops measurments with tag: %s\n", fp->mark_tag);
+
 #pragma omp parallel private(a,x)
     {
         // Variables used in marker_get

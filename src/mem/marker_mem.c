@@ -2,9 +2,13 @@
 #include <immintrin.h>
 #include <omp.h>
 #include <chrono>
+#include <likwid.h>
 
 struct latency {
-
+    int size;
+    int* next;
+    int* assignment;
+    int current;
 };
 
 struct bandwidth {
@@ -13,13 +17,15 @@ struct bandwidth {
     __m256d** copy_arr;
     long size;
     int op;
+    char mark_tag[];
 
 };
 
-// takes thread count and bw size
+// takes thread count, bw size, and operations
 struct bandwidth* init_bw(int thread_count, long bw_size, int operations) {
     
     struct bandwidth* bw = malloc(sizeof(*bw)); 
+    int thr_num, i;
 
     // allocate arr and cpy arr
     __m256d** arr = (__m256d **)malloc(sizeof(__m256d*)*thread_count);
@@ -57,6 +63,10 @@ struct bandwidth* init_bw(int thread_count, long bw_size, int operations) {
 
 void band_readWrite(struct bandwidth* bw) {
 // reduction(max:ticks) previously at the end of this pragma
+ 
+    int thr_num;
+    int i, j;
+
     #pragma omp parallel default(shared) private(thr_num,buffer,i,j)     	
     {
     		thr_num = omp_get_thread_num();
@@ -65,6 +75,7 @@ void band_readWrite(struct bandwidth* bw) {
     			if(i == bw->op / 2){
     			//	start = system_clock::now();
                         //	Maybe start likwid region here
+                            
     			}
     			for(int j = 0; j < bw->size; j++){
                                     // Loading 256-bits into memory address of array
@@ -88,4 +99,5 @@ void band_readWrite(struct bandwidth* bw) {
     	//Compute sum of array;
     	//ticks = 0;
 }
+
 
