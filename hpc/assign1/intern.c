@@ -35,13 +35,19 @@ int main(int argc,char *argv[])
 	{
 		num_threads = omp_get_num_threads();
 		for(int i=0;i<n;i++){
-			a = _mm256_fmadd_ps(a,b,c);
-			x = _mm256_fmadd_ps(x,y,z);
+		//	a = _mm256_fmadd_ps(a,b,c);
+			a = _mm256_mul_ps(a,b);
+			a = _mm256_add_ps(a,c);
+			x = _mm256_mul_ps(x,y);
+			x = _mm256_add_ps(x,z);
+		//	x = _mm256_fmadd_ps(x,y,z);
 			asm("");
 		}
 	}
 	end = chrono::system_clock::now();
-	_mm256_fmadd_ps(a,x,a);
+//	_mm256_fmadd_ps(a,x,a);
+	x = _mm256_mul_ps(a,x);
+	a = _mm256_mul_ps(x,a);
 	_mm256_storeu_ps(res,a);
 	for(int i=0;i<7;i++){
 		cout<<endl<<i<<" "<<res[i];

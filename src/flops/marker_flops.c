@@ -2,7 +2,6 @@
 #include<iostream>
 #include<omp.h>
 #include<chrono>
-#include <unistd.h>
 #include<likwid.h>
 
 
@@ -14,17 +13,17 @@ struct flops {
     __m256 y;
     __m256 z;
     uint64_t loops;
-    const char* mark_tag;
+    char mark_tag[];
 
 };
 
 // takes number of loops and a marker tag
-struct flops* init_flops(uint64_t n, const char* tag) {
-    printf("init_flops called with loops %lu and tag %s.\n", n, tag);
-    struct flops* fp = (struct flops *) malloc(sizeof(*fp));
+struct flops* init_flops(uint64_t n, char tag[]) {
+    printf("init_flops called with loops %d and tag %s.\n", n, tag);
+    struct flops* fp = malloc(sizeof(*fp));
 
-    __m256 a,b,c; 
-    __m256 x,y,z; 
+    __m256d a,b,c; 
+    __m256d x,y,z; 
     float load_val1[] = {0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8};
     float load_val2[] = {0.2,0.1,0.5,0.9,0.3,0.0,0.1,0.1};
     b = _mm256_loadu_ps(load_val1);
@@ -49,24 +48,22 @@ struct flops* init_flops(uint64_t n, const char* tag) {
 // Perform flops counters
 void perform_flops(struct flops* fp) {
     printf("perform_flops called.\n");
-    
-    int i;
-    float res[8];
 
-#pragma omp parallel private(i)
+    float res[8];
+    printf("performing flops measurments with tag: %s\n", fp->mark_tag);
+#pragma omp parallel private(a,x)
     {
         // Variables used in marker_get
-        int nr_events = 0;
-        double* events = (double *) malloc(sizeof(*events) * nr_events);
+        int nr_events = 20;
+        double* events = malloc(sizeof(*events) * nr_events);
         memset(events, 0, nr_events * sizeof(*events));
         double time = 0.0;
         int count = 0;
 
-        int thread_num = omp_get_thread_num();
-        printf("starting likwid on thread %d\n", thread_num);
+        //num_threads = omp_get_num_threads();
         LIKWID_MARKER_START(fp->mark_tag);
-        //sleep(5);
-        for(i=0; i < fp->loops; i++){
+
+        for(int i=0;i<fp->n;i++){
 
             //a = _mm256_fmadd_ps(a,b,c);
             fp->a = _mm256_mul_ps(fp->a,fp->b);
@@ -76,8 +73,6 @@ void perform_flops(struct flops* fp) {
             //x = _mm256_fmadd_ps(x,y,z);
             asm("");
     	}
-        //sleep(10);
-
         LIKWID_MARKER_STOP(fp->mark_tag);
         LIKWID_MARKER_GET(fp->mark_tag, &nr_events, events, &time, &count);
         printf("Tag %s: Thread %d got %d events, runtime %f s, call count %d\n",\

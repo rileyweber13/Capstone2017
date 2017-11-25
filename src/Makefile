@@ -12,7 +12,6 @@ test:
 flops_t:
 	$(CC) -DLIKWID_PERFMON $(CXXFLAGS) -I$(HEADERS) -L$(LIBS) ./flops/marker_flops.c ./likwid_marker_t.c -llikwid -o ./bin/flops
 
-
 help:
 	@echo "Build Performance monitoring in main.cpp"
 
