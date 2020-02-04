@@ -13,7 +13,7 @@ test:
 
 flops:
 	$(CC) -DLIKWID_PERFMON $(CXXFLAGS) -I$(HEADERS) -L$(LIBS) \
-	./$(FLOPSDIR)/marker_flops.c ./mem/marker_mem.c ./likwid_marker_t_flops.c -llikwid -o ./bin/flops
+	./$(FLOPSDIR)/computation_measurements.cpp ./mem/marker_mem.c ./likwid_marker_t_flops.c -llikwid -o ./bin/flops
 
 bw:
 	$(CC) -DLIKWID_PERFMON $(CXXFLAGS) -I$(HEADERS) -L$(LIBS) \

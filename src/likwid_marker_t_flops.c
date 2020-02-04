@@ -5,6 +5,8 @@
 #include <omp.h>
 #include <likwid.h>
 
+#include "flops_src/computation_measurements.h"
+
 #define GROUP 1
 
 struct flops* init_flops(uint64_t n, const char* tag);
@@ -68,10 +70,17 @@ int main(int argc, char* argv[]) {
     const char* flops_tag = "FLOPS";
     likwid_markerRegisterRegion(flops_tag);
 
-    struct flops* fp = init_flops(loops, flops_tag);
+    // ---- OLD CODE
+    // struct flops* fp = init_flops(loops, flops_tag);
     
     // Perform actual flops and get measurments
-    perform_flops(fp);
+    // perform_flops(fp);
+    // ---- END OLD CODE
+
+    // ---- NEW CODE
+    // RILEY'S INSERTED CODE
+    auto a = flops(loops, flops_tag);
+    // ---- END NEW CODE
 
     // Stop performance counters
     perfmon_stopCounters();
