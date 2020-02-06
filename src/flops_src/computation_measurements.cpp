@@ -38,7 +38,7 @@ __m256 flops(std::uint64_t num_iterations, const char* flops_tag){
   // __m256 v = _mm256_setr_ps (2020., 220., 320., 420., 520., 620., 720., 820.);
 
 
-#pragma openmp parallel
+#pragma omp parallel
 {
   // Variables used in marker_get
   int nr_events = 20;
