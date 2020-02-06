@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
     char cpulist[] = "0,1";
     int cpu[4] = {0,1};
     char filepath[] = "/tmp/test_maker.out"; // path to .out file
-    char group[] = "FLOPS_DP"; 
+    char group[] = "FLOPS_SP"; 
     char accessmode[] = "1";
 
     if (argc != 2) {
