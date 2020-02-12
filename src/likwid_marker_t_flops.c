@@ -68,7 +68,8 @@ int main(int argc, char* argv[]) {
     
     //Register region
     const char* flops_tag = "FLOPS";
-    likwid_markerRegisterRegion(flops_tag);
+    // optional according to https://github.com/RRZE-HPC/likwid/wiki/TutorialMarkerC
+    // likwid_markerRegisterRegion(flops_tag);
 
     // ---- OLD CODE
     // struct flops* fp = init_flops(loops, flops_tag);
@@ -80,6 +81,9 @@ int main(int argc, char* argv[]) {
     // ---- NEW CODE
     // RILEY'S INSERTED CODE
     auto a = flops(loops, flops_tag);
+    // we tried just running the same thing again to see if this would change
+    // the number of regions reported by likwid. It didn't.
+    // auto b = flops(loops, flops_tag);
     // ---- END NEW CODE
 
     // Stop performance counters
