@@ -149,7 +149,7 @@ int main(int argc, char* argv[]) {
         }
     remove(filepath);
 
-    perfmon_finalize();
+    // perfmon_finalize();
     return 0;
 } 
 

@@ -55,7 +55,7 @@ int main (int argc, char* argv[]) {
     printf("%d\n", gid);
     if (gid < 0) {
 	printf("Failed to add event string %s to LIKWID's performance monitoring module\n", estr);
-        perfmon_finalize();
+        // perfmon_finalize();
         topology_finalize();
         return 1;
     }
@@ -65,7 +65,7 @@ int main (int argc, char* argv[]) {
     if (err < 0)
     {
         printf("Failed to setup group %d in LIKWID's performance monitoring module\n", gid);
-        perfmon_finalize();
+        // perfmon_finalize();
         topology_finalize();
         return 1;
     }
@@ -75,7 +75,7 @@ int main (int argc, char* argv[]) {
     if (err < 0)
     {
         printf("Failed to start counters for group %d for thread %d\n",gid, (-1*err)-1);
-        perfmon_finalize();
+        // perfmon_finalize();
         topology_finalize();
         return 1;
     }
@@ -89,7 +89,7 @@ int main (int argc, char* argv[]) {
     if (err < 0)
     {
         printf("Failed to stop counters for group %d for thread %d\n",gid, (-1*err)-1);
-        perfmon_finalize();
+        // perfmon_finalize();
         topology_finalize();
         return 1;
     }
@@ -112,7 +112,7 @@ int main (int argc, char* argv[]) {
 
     free(cpus);
     // Uninitialize the perfmon module.
-    perfmon_finalize();
+    // perfmon_finalize();
     affinity_finalize();
     // Uninitialize the topology module.
     topology_finalize();
