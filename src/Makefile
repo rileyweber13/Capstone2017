@@ -8,20 +8,23 @@ OBJS=
 FLOPSDIR=flops_src
 MEMDIR=mem
 
-test:
+test: init
 	$(CC) -DLIKWID_PERFMON $(CXXFLAGS) -I$(HEADERS) -L$(LIBS) likwid_marker_t.c -llikwid -o ./bin/marker_test
 
-flops:
+flops: init
 	$(CC) -DLIKWID_PERFMON $(CXXFLAGS) -I$(HEADERS) -L$(LIBS) \
-	./$(FLOPSDIR)/computation_measurements.cpp ./mem/marker_mem.c ./likwid_marker_t_flops.c -llikwid -o ./bin/flops
+	./$(FLOPSDIR)/computation_measurements.cpp ./likwid_marker_t_flops.c -llikwid -o ./bin/flops
 
-bw:
+bw: init
 	$(CC) -DLIKWID_PERFMON $(CXXFLAGS) -I$(HEADERS) -L$(LIBS) \
-	./$(FLOPSDIR)/marker_flops.c ./mem/marker_mem.c ./likwid_marker_t_bw.c -llikwid -o ./bin/bw
+	./mem/marker_mem.c ./likwid_marker_t_bw.c -llikwid -o ./bin/bw
 
-lat:
+lat: init
 	$(CC) -DLIKWID_PERFMON $(CXXFLAGS) -I$(HEADERS) -L$(LIBS) \
 	./$(FLOPSDIR)/marker_flops.c ./mem/marker_mem.c ./likwid_marker_t_lat.c -llikwid -o ./bin/lat
+	
+init:
+	mkdir -p bin
 
 help:
 	@echo "Build Performance monitoring in main.cpp"
